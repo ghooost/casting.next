@@ -1,0 +1,28 @@
+.main {
+  margin: var(--size-m) 0;
+  padding: var(--size-m) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  display: inline-block;
+  font-size: var(--font-size-m);
+  color: var(--color-main);
+  background-color: var(--bg-action);
+  padding: var(--size-l) var(--size-xl);
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
+  cursor: pointer;
+}
+
+.button:active {
+  background-color: var(--bg-action-press);
+}
+
+.button:disabled {
+  cursor: default;
+  color: var(--color-disabled);
+  background-color: var(--bg-disabled);
+}
