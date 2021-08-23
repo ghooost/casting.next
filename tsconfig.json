@@ -25,6 +25,15 @@
       "@components/*": [
         "./components/*"
       ],
+      "@store/*": [
+        "./store/*"
+      ],
+      "@shared/*": [
+        "shared/*"
+      ],
+      "@clientapi/*": [
+        "clientapi/*"
+      ],
     },
   },
   "include": [

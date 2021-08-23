@@ -1,0 +1,52 @@
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.link {
+  display: block;
+  cursor: pointer;
+  font-size: var(--font-size-l);
+  text-decoration: none;
+  color: black;
+  padding: var(--size-l) var(--size-m);
+  margin: 0 var(--size-m);
+}
+
+  .profile {
+    display: block;
+  }
+
+  .profilePopup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background: #fff;
+    border: 1px solid black;
+    z-index: 3;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+    padding: 0;
+  }
+
+  .popupCover {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .roles {
+    font-size: var(--font-size-m);
+    color: var(--color-secondary);
+    padding: var(--size-l) var(--size-m);
+    margin: 0 var(--size-m);
+  }
