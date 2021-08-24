@@ -4,12 +4,16 @@ import styles from './styles.module.css'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { ProfileMenuContainer } from '@components/ProfileMenu'
+import { LoginCoverContainer } from '@components/LoginCover'
+import { castEnum } from '@libs/enum'
+import { SignUpPageContainer } from '@components/SignUpPage'
+import { HomePageContainer } from '@components/HomePage'
 
-enum Pages {
-  home = '',
-  events = '',
-  event = '',
-  admins = '',
+export enum Pages {
+  home = '/',
+  event = 'event',
+  signin = 'signin',
+  signup = 'signup',
 }
 
 type CommonPageProps = {
@@ -17,8 +21,14 @@ type CommonPageProps = {
 };
 
 export const CommonPage: FC<CommonPageProps> = (props) => {
-  const router = useRouter()
-  console.log(router.query);
+  const router = useRouter();
+  const path = castEnum(
+    Pages,
+    Array.isArray(router.query?.path)
+      ? router.query?.path[0]
+      : router.query?.path,
+  ) || Pages.home;
+
 
   return (
     <>
@@ -30,16 +40,17 @@ export const CommonPage: FC<CommonPageProps> = (props) => {
 
       <div className={styles.container}>
         <div className={styles.bar}>
-          <div className={styles.logo}>Casting</div>
+          <Link href={Pages.home}><a className={styles.logo}>Casting</a></Link>
           <ProfileMenuContainer/>
         </div>
 
-        <main>
-          <Link href="/manage"><a>Go to manage page</a></Link>
-          <Link href="/event"><a>Go to event page</a></Link>
+        <main className={styles.main}>
+          {path === Pages.home && <HomePageContainer />}
+          {path === Pages.signin && <LoginCoverContainer />}
+          {path === Pages.signup && <SignUpPageContainer />}
         </main>
 
-        <footer></footer>
+        <div className={styles.footer}/>
       </div>
     </>
   )

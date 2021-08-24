@@ -1,8 +1,9 @@
 const en = {
-  title: 'Sign In',
+  title: 'Sign Up',
   email: 'E-mail',
   password: 'Password',
-  login: 'Login',
+  password2: 'Confirm Password',
+  login: 'Proceed',
   error_WrongLogin: 'Wrong email or password',
   error_NotConnected: 'No responce',
   error_Unknown: 'Unknown error',

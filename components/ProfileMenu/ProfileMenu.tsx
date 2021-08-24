@@ -1,3 +1,4 @@
+import { Pages } from '@components/CommonPage';
 import { UserProfile } from '@shared/user';
 import Link from 'next/link';
 import React, { ChangeEvent, FC, useCallback, useState } from 'react'
@@ -24,15 +25,16 @@ export const ProfileMenu: FC<ProfileMenuProps> = (props) => {
   return (
     <div className={styles.main}>
       {user === null && <>
-        <Link href='/signin'><a className={styles.link}>Sign In</a></Link>
-        <Link href='/signup'><a className={styles.link}>Sign Up</a></Link>
+        <div className={styles.note}>For Admins:</div>
+        <Link href={Pages.signin}><a className={styles.link}>Sign In</a></Link>
+        <Link href={Pages.signup}><a className={styles.link}>Sign Up</a></Link>
       </>}
       {user !== null && <>
           <a className={styles.link} onClick={handleClick}>{`Hi, ${user.email}`}</a>
           {isOpened &&
             <div className={styles.profilePopup}>
               <a className={styles.link} onClick={handleClick}>{`Hi, ${user.email}`}</a>
-              <p className={styles.roles}>{user.roles.join(', ')}</p>
+              <p className={styles.note}>{user.roles.join(', ')}</p>
               <a className={styles.link} onClick={handleLogout}>Log out</a>
             </div>
           }
