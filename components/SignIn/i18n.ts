@@ -1,5 +1,5 @@
 const en = {
-  title: 'Sign In',
+  title: 'SignIn',
   email: 'E-mail',
   password: 'Password',
   login: 'Login',

@@ -7,22 +7,19 @@ import { NextApiRequest, NextApiResponse } from 'next'
  */
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
   const session = req.headers[AUTHHEADER];
-  if (session) {
+  if (session === '1233445') {
     const result: SessionResponse = {
       user: {
         email: 'test@test.com',
         roles: ['admin'],
       },
       session: '1233445',
-      error: AuthError.Empty,
     };
 
     res.status(200).json(result);
     return;
   }
-  res.status(403).json({
-    error: AuthError.Unknown,
-  });
+  res.status(403).json({});
 }
 
 export default handler

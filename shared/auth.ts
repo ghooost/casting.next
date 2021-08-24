@@ -8,7 +8,6 @@ export type SignInParams = {
 export type SessionResponse = {
   user?: UserProfile;
   session?: string;
-  error: AuthError;
 }
 
 export type UserProfile = {

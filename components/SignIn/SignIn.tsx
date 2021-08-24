@@ -40,7 +40,6 @@ export const SignIn: FC<SignInProps> = (props) => {
 
   return (
     <section className={styles.container}>
-      <h1>{i18n('title')}</h1>
       {isLoading && <div className="loading-cover"/>}
       {error && <div className="error">{i18n(`error-${error}`)}</div>}
       <TextInput value={email} disabled={isLoading} placeholder={i18n('email')} onChange={handleEmailChange} />

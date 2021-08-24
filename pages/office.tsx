@@ -1,10 +1,18 @@
 import { Layout } from '@components/Layout'
 import { authSelectors } from '@store/slices/auth';
+import { useRouter } from 'next/dist/client/router';
 import React from 'react'
 import { useSelector } from 'react-redux';
 
 export default function Page() {
   const user = useSelector(authSelectors.getUser);
+  const router = useRouter();
+
+  if (!user && typeof window !== 'undefined') {
+    router.replace('/');
+    return null;
+  };
+
   return <Layout
     title="Office"
     description="Castings you can"

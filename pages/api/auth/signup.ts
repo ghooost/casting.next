@@ -1,4 +1,4 @@
-import { AuthError, SessionResponse, UserProfile } from '@shared/auth';
+import { SessionResponse } from '@shared/auth';
 import { NextApiRequest, NextApiResponse } from 'next'
 
 /**
@@ -6,7 +6,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
  * Out: session and userProfile or error
  */
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
-  console.log(req.headers);
 
   const result: SessionResponse = {
     user: {
@@ -14,7 +13,6 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
       roles: ['admin'],
     },
     session: '1233445',
-    error: AuthError.Empty,
   };
 
   res.status(200).json(result);

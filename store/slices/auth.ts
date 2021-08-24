@@ -20,10 +20,13 @@ const authSlice = createSlice({
   name: 'authSlice',
   initialState,
   reducers: {
-    doCheck: (state) => {
-      state.user = null;
+    // doCheck: (state) => {
+    //   state.user = null;
+    //   state.isLoading = true;
+    //   state.error = AuthError.Empty;
+    // },
+    toggleLoading: (state) => {
       state.isLoading = true;
-      state.error = AuthError.Empty;
     },
     doSignIn: (state, { payload }: PayloadAction<SignInParams>) => {
       state.user = null;

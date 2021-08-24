@@ -6,7 +6,8 @@ import { NextApiRequest, NextApiResponse } from 'next'
  * Out: session and userProfile or error
  */
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
-  res.status(200);
+  //TODO: better status
+  res.status(200).json({});
 }
 
 export default handler
