@@ -1,19 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit'
-import userSlice from './slices/user'
-import { userSaga } from './sagas/user'
+import authSlice from './slices/auth'
+import { authSaga } from './sagas/auth'
 import createSagaMiddleware from '@redux-saga/core';
 import { all } from '@redux-saga/core/effects';
 
 const sagaMiddleware = createSagaMiddleware();
 function* rootSaga() {
   yield all([
-    userSaga(),
+    authSaga(),
   ])
 }
 
 export const store = configureStore({
   reducer: {
-    userSlice,
+    authSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
 })

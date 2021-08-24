@@ -6,10 +6,16 @@ import { useSelector } from 'react-redux';
 export default function Page() {
   const user = useSelector(authSelectors.getUser);
   return <Layout
-    title="Castings"
+    title="Office"
     description="Castings you can"
     user={user}
+    backUrl="/"
   >
     <p>Test test test</p>
   </Layout>
 }
+
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   return { props: { public } }
+// }

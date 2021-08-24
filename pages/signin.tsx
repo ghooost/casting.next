@@ -1,15 +1,18 @@
-import { Layout } from '@components/Layout'
-import { authSelectors } from '@store/slices/auth';
 import React from 'react'
 import { useSelector } from 'react-redux';
+
+import { Layout } from '@components/Layout'
+import { SignInContainer } from '@components/SignIn';
+import { authSelectors } from '@store/slices/auth';
 
 export default function Page() {
   const user = useSelector(authSelectors.getUser);
   return <Layout
-    title="Castings"
+    title="SignIn"
     description="Castings you can"
     user={user}
+    backUrl="/"
   >
-    <p>Test test test</p>
+    <SignInContainer />
   </Layout>
 }

@@ -23,7 +23,6 @@ export const UserLogged = () => (
     <ProfileMenu user={{
       email: 'user@users.com',
       roles: ['admin'],
-      session: '123445',
     }} />
   </div>
 );

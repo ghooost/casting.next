@@ -2,17 +2,17 @@ import React, { FC, useCallback, useState } from 'react'
 import { TextInput } from '@components/TextInput'
 import styles from './styles.module.css'
 import { Submit } from '@components/Submit'
-import { i18n, i18nUse } from '@libs/i18n'
+import { i18n, i18nUse } from '@shared/i18n'
 import keyset from './i18n'
-import { AuthorizationError } from 'shared/user'
+import { AuthError } from '@shared/auth'
 
-export type SignUpPageProps = {
-  error?: AuthorizationError;
+export type SignUpProps = {
+  error?: AuthError;
   isLoading: boolean;
   onSubmit: (email: string, pass: string) => void;
 }
 
-export const SignUpPage: FC<SignUpPageProps> = (props) => {
+export const SignUp: FC<SignUpProps> = (props) => {
   const {error, isLoading, onSubmit} = props;
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
@@ -21,17 +21,21 @@ export const SignUpPage: FC<SignUpPageProps> = (props) => {
   const handleEmailChange = useCallback((value: string) => {
     setEmail(value);
   },[]);
+
   const handlePassChange = useCallback((value: string) => {
     setPass(value);
   }, []);
+
   const handlePass2Change = useCallback((value: string) => {
     setPass2(value);
   }, []);
+
   const handleClick = useCallback(()=>{
     if (email && pass) {
       onSubmit(email, pass);
     }
   }, [email, onSubmit, pass]);
+
   const isSubmitDisabled = useCallback(() => {
     if (email && pass && !isLoading && pass===pass2) {
       return false;

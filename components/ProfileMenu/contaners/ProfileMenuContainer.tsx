@@ -1,15 +1,19 @@
-import { userSliceActions, userSliceSelectors } from '@store/slices/user'
+import { UserProfile } from '@shared/auth';
+import { authActions } from '@store/slices/auth'
 import React, { FC, useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { ProfileMenu } from '../ProfileMenu'
 
-export const ProfileMenuContainer: FC = () => {
-  const dispatch = useDispatch();
+type ProfileMenuContainerProps = {
+  user: UserProfile;
+};
 
-  const user = useSelector(userSliceSelectors.getUser);
+export const ProfileMenuContainer: FC<ProfileMenuContainerProps> = (props) => {
+  const dispatch = useDispatch();
+  const {user} = props;
 
   const handleLogout = useCallback(() => {
-    dispatch(userSliceActions.doLogout());
+    dispatch(authActions.doSignOut());
   }, [dispatch]);
 
   return <ProfileMenu

@@ -1,7 +1,6 @@
-import { Pages } from '@components/CommonPage';
-import { UserProfile } from '@shared/user';
+import { UserProfile } from '@shared/auth';
 import Link from 'next/link';
-import React, { ChangeEvent, FC, useCallback, useState } from 'react'
+import React, { FC, useCallback, useState } from 'react'
 
 import styles from './styles.module.css'
 
@@ -26,8 +25,8 @@ export const ProfileMenu: FC<ProfileMenuProps> = (props) => {
     <div className={styles.main}>
       {user === null && <>
         <div className={styles.note}>For Admins:</div>
-        <Link href={Pages.signin}><a className={styles.link}>Sign In</a></Link>
-        <Link href={Pages.signup}><a className={styles.link}>Sign Up</a></Link>
+        <Link href={`/signin`}><a className={styles.link}>Sign In</a></Link>
+        <Link href={`/signup`}><a className={styles.link}>Sign Up</a></Link>
       </>}
       {user !== null && <>
           <a className={styles.link} onClick={handleClick}>{`Hi, ${user.email}`}</a>
@@ -35,6 +34,7 @@ export const ProfileMenu: FC<ProfileMenuProps> = (props) => {
             <div className={styles.profilePopup}>
               <a className={styles.link} onClick={handleClick}>{`Hi, ${user.email}`}</a>
               <p className={styles.note}>{user.roles.join(', ')}</p>
+              <Link href={`/office`}><a className={styles.link}>Office</a></Link>
               <a className={styles.link} onClick={handleLogout}>Log out</a>
             </div>
           }

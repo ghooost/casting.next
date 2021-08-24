@@ -1,15 +1,22 @@
-export type LoginParams = {
+export const AUTHHEADER = 'x-session-id';
+
+export type SignInParams = {
   login: string;
   pass: string;
+}
+
+export type SessionResponse = {
+  user?: UserProfile;
+  session?: string;
+  error: AuthError;
 }
 
 export type UserProfile = {
   email?: string;
   roles: string[];
-  session?: string;
 };
 
-export enum AuthorizationError {
+export enum AuthError {
   Empty = '',
   WrongLogin = 'WrongLogin',
   NotConnected = 'NotConnected',

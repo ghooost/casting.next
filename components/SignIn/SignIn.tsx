@@ -2,17 +2,18 @@ import React, { FC, useCallback, useState } from 'react'
 import { TextInput } from '@components/TextInput'
 import styles from './styles.module.css'
 import { Submit } from '@components/Submit'
-import { i18n, i18nUse } from '@libs/i18n'
+import { i18n, i18nUse } from '@shared/i18n'
 import keyset from './i18n'
-import { AuthorizationError } from 'shared/user'
+import { AuthError } from '@shared/auth'
 
-export type LoginCoverProps = {
-  error?: AuthorizationError;
+export type SignInProps = {
+  error?: AuthError;
   isLoading: boolean;
   onSubmit: (email: string, pass: string) => void;
 }
 
-export const LoginCover: FC<LoginCoverProps> = (props) => {
+export const SignIn: FC<SignInProps> = (props) => {
+
   const {error, isLoading, onSubmit} = props;
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
