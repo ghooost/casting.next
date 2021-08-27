@@ -4,6 +4,7 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import { AuthError, SignInParams, SessionResponse } from "@shared/auth";
 import { apiCheck, apiSignIn, apiSignOut, apiSignUp } from '@client/auth';
 import { lsGetItem, lsRemoveItem, lsSetItem } from '@client/localStorage';
+import { isAtServer } from '@shared/utils';
 
 function* doSignIn({ payload }: PayloadAction<SignInParams> ) {
   try {
@@ -57,7 +58,7 @@ function* doCheck() {
 }
 
 export function* authSaga() {
-  yield call(doCheck);
+  yield takeEvery(authActions.doCheck, doCheck);
   yield takeEvery(authActions.doSignIn, doSignIn);
   yield takeEvery(authActions.doSignOut, doSignOut);
   yield takeEvery(authActions.doSignUp, doSignUp);

@@ -22,6 +22,9 @@ const authSlice = createSlice({
   name: 'authSlice',
   initialState,
   reducers: {
+    doCheck: (state) => {
+      state.isSessionChecked = false;
+    },
     setSessionChecked: (state) => {
       state.isSessionChecked = true;
     },

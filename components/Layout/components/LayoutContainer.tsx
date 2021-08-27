@@ -1,7 +1,8 @@
-import { authSelectors } from '@store/slices/auth'
+import { isAtServer } from '@shared/utils';
+import { authActions, authSelectors } from '@store/slices/auth'
 import { useRouter } from 'next/dist/client/router';
 import React, { FC, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Layout, LayoutProps } from '../Layout'
 
 export enum StrictMode {
@@ -18,11 +19,11 @@ export const LayoutContainer: FC<LayoutContainerProps> = (props) => {
   const {strictMode, fallbackUrl} = props;
   const isSessionChecked = useSelector(authSelectors.getSessionChecked);
   const user = useSelector(authSelectors.getUser);
-
+  const dispatch = useDispatch();
   const router = useRouter();
 
   useEffect(() => {
-    if (isSessionChecked && typeof window !== 'undefined') {
+    if (isSessionChecked && !isAtServer()) {
       const mode = user === null ? StrictMode.anonimous : StrictMode.authorized;
 
       if (strictMode !== undefined && strictMode !== mode && fallbackUrl) {
@@ -31,6 +32,12 @@ export const LayoutContainer: FC<LayoutContainerProps> = (props) => {
       }
     }
   }, [fallbackUrl, isSessionChecked, router, strictMode, user]);
+
+  useEffect(() => {
+    if (!isSessionChecked && !isAtServer()) {
+      dispatch(authActions.doCheck());
+    }
+  }, [dispatch, isSessionChecked]);
 
   const newProps = {
     ...props,

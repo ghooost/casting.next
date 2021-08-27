@@ -1,19 +1,21 @@
+import { isAtServer } from "@shared/utils";
+
 export const lsSetItem = (key: string, value: string) => {
-  if (typeof window === 'undefined') {
+  if (isAtServer()) {
     return;
   }
   window.localStorage.setItem(key, value);
 }
 
 export const lsGetItem = (key: string) => {
-  if (typeof window === 'undefined') {
+  if (isAtServer()) {
     return undefined;
   }
   return window.localStorage.getItem(key);
 }
 
 export const lsRemoveItem = (key: string) => {
-  if (typeof window === 'undefined') {
+  if (isAtServer()) {
     return;
   }
   return window.localStorage.removeItem(key);
