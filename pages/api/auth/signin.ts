@@ -1,24 +1,24 @@
-import { SessionResponse, SignInParams, UserProfile } from '@shared/auth';
+import { SessionResponse, SignInParams } from '@shared/auth';
+import { findOne, MongoCollections, update } from 'server/mongo';
 import { NextApiRequest, NextApiResponse } from 'next'
-
+import short from 'short-uuid';
 /**
  * In: session
  * Out: session and userProfile or error
  */
-const handler = (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const data: SignInParams = req.body;
-  if (data.login !== 'test@test.com') {
+  const user = await findOne(MongoCollections.users, { 'user.email': data.login, 'user.pass': data.pass });
+  if (!user) {
     //TODO: better errors
     res.status(403).json({});
     return;
   };
-
+  const sessionId = short.uuid();
+  await update(MongoCollections.users, { _id: user._id }, { sessions: user.sessions.concat({ id: sessionId, validTill: 0})});
   const result: SessionResponse = {
-    user: {
-      email: 'test@test.com',
-      roles: ['admin'],
-    },
-    session: '1233445',
+    user: user.user,
+    sessionId,
   };
 
   res.status(200).json(result);

@@ -1,0 +1,19 @@
+.main {
+  margin: var(--size-m) 0;
+  border: 1px solid black;
+  padding: var(--size-s);
+  display: block;
+}
+
+.title {
+  font-size: var(--font-size-l);
+  color: var(--color-primary);
+  margin: var(--size-s) 0;
+  font-weight: bold;
+}
+
+.note {
+  font-size: var(--font-size-m);
+  color: var(--color-primary);
+  margin: var(--size-s) 0;
+}

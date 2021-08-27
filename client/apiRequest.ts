@@ -1,6 +1,6 @@
-import { AuthError, AUTHHEADER } from "@shared/auth";
 import { store } from "@store/index";
 import { authSelectors } from "@store/slices/auth";
+import { AUTHHEADER } from "@shared/auth";
 
 export type ApiErrorData = {
   error: string;

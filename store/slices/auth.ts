@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AuthError, SignInParams, UserProfile } from '@shared/auth'
+import { AuthError, SignInParams, UserProfile } from "@shared/auth"
 import type { RootState } from '../index'
 
 type AuthSlice = {
@@ -29,6 +29,11 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     doSignIn: (state, { payload }: PayloadAction<SignInParams>) => {
+      state.user = null;
+      state.isLoading = true;
+      state.error = AuthError.Empty;
+    },
+    doSignUp: (state, { payload }: PayloadAction<SignInParams>) => {
       state.user = null;
       state.isLoading = true;
       state.error = AuthError.Empty;

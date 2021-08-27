@@ -10,8 +10,8 @@ export const SignUpContainer: FC = () => {
   const isLoading = useSelector(authSelectors.isLoading);
 
   const handleSubmit = useCallback((login, pass) => {
-    // dispatch(authActions.doSignUp({login, pass}));
-  }, []);
+    dispatch(authActions.doSignUp({login, pass}));
+  }, [dispatch]);
 
   return <SignUp
     error={error}

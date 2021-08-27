@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import Head from 'next/head'
 import styles from './styles.module.css'
 import { ProfileMenuContainer } from '@components/ProfileMenu'
+import Link from 'next/link'
 import { UserProfile } from '@shared/auth'
 
 type LayoutProps = {
@@ -12,7 +13,7 @@ type LayoutProps = {
 };
 
 export const Layout: FC<LayoutProps> = (props) => {
-  const {user, title, description, children} = props;
+  const { user, title, description, children, backUrl} = props;
 
   return (
     <>
@@ -24,7 +25,11 @@ export const Layout: FC<LayoutProps> = (props) => {
 
       <div className={styles.container}>
         <div className={styles.bar}>
-          <a className={styles.logo}>{title}</a>
+          {backUrl ? (
+            <Link href={backUrl}><a className={styles.logo}>&lt;&nbsp;{title}</a></Link>
+          ) : (
+              <a className={styles.logo}>{title}</a>
+          )}
           <ProfileMenuContainer user={user}/>
         </div>
 

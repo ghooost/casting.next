@@ -4,7 +4,7 @@ import styles from './styles.module.css'
 import { Submit } from '@components/Submit'
 import { i18n, i18nUse } from '@shared/i18n'
 import keyset from './i18n'
-import { AuthError } from '@shared/auth'
+import { AuthError } from "@shared/auth"
 
 export type SignUpProps = {
   error?: AuthError;
