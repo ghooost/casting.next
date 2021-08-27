@@ -23,6 +23,14 @@
   font-size: 24px;
   font-weight: bold;
   margin: 0 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.ico {
+  margin-right: var(--size-m);
 }
 
 .main {
@@ -40,4 +48,18 @@
   right: 0;
   height: 12px;
   background-color: #000;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,29 +1,14 @@
-import { Layout } from '@components/Layout'
-import { authSelectors } from '@store/slices/auth';
-import { useRouter } from 'next/dist/client/router';
+import { LayoutContainer, StrictMode } from '@components/Layout'
 import React from 'react'
-import { useSelector } from 'react-redux';
 
 export default function Page() {
-  const user = useSelector(authSelectors.getUser);
-  const router = useRouter();
 
-  if (!user && typeof window !== 'undefined') {
-    router.replace('/');
-    return null;
-  };
-
-  return <Layout
+  return <LayoutContainer
     title="Office"
     description="Castings you can"
-    user={user}
-    backUrl="/"
+    strictMode={StrictMode.authorized}
+    fallbackUrl="/"
   >
-    <p>Test test test</p>
-  </Layout>
+    <p>Your office here</p>
+  </LayoutContainer>
 }
-
-// export async function getServerSideProps() {
-//   // Fetch data from external API
-//   return { props: { public } }
-// }

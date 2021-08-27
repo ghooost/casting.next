@@ -42,6 +42,7 @@ function* doCheck() {
   try {
     const session = lsGetItem('session');
     if (!session) {
+      yield put(authActions.setSessionChecked());
       return;
     }
     yield put(authActions.toggleLoading());
@@ -52,6 +53,7 @@ function* doCheck() {
   } catch {
     yield put(authActions.clearSession());
   }
+  yield put(authActions.setSessionChecked());
 }
 
 export function* authSaga() {

@@ -3,7 +3,8 @@ import { AuthError, SignInParams, UserProfile } from "@shared/auth"
 import type { RootState } from '../index'
 
 type AuthSlice = {
-  user: UserProfile | null,
+  user: UserProfile | null;
+  isSessionChecked: boolean;
   isLoading: boolean;
   session: string;
   error: AuthError;
@@ -11,6 +12,7 @@ type AuthSlice = {
 
 const initialState: AuthSlice = {
   user: null,
+  isSessionChecked: false,
   isLoading: false,
   session: '',
   error: AuthError.Empty,
@@ -20,11 +22,9 @@ const authSlice = createSlice({
   name: 'authSlice',
   initialState,
   reducers: {
-    // doCheck: (state) => {
-    //   state.user = null;
-    //   state.isLoading = true;
-    //   state.error = AuthError.Empty;
-    // },
+    setSessionChecked: (state) => {
+      state.isSessionChecked = true;
+    },
     toggleLoading: (state) => {
       state.isLoading = true;
     },
@@ -71,6 +71,7 @@ export const authSelectors = {
   isLoading: ({ authSlice }: RootState) => authSlice.isLoading,
   getError: ({ authSlice }: RootState) => authSlice.error,
   getSession: ({ authSlice }: RootState) => authSlice.session,
+  getSessionChecked: ({ authSlice }: RootState) => authSlice.isSessionChecked,
 };
 
 export const authActions = authSlice.actions;
