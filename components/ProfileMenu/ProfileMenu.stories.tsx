@@ -2,6 +2,7 @@ import React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
 import { ProfileMenu } from './ProfileMenu';
+import { AuthRole } from '@shared/auth';
 
 export default {
   title: 'ProfileMenu',
@@ -22,7 +23,7 @@ export const UserLogged = () => (
   }}>
     <ProfileMenu user={{
       email: 'user@users.com',
-      roles: ['admin'],
+      roles: [AuthRole.admin],
     }} />
   </div>
 );
