@@ -36,8 +36,8 @@ export type Casting = {
   note: string;
   isPublic: boolean;
   isOpen: boolean;
-  owner: string;
-  authors?: string;
+  owner?: string;
+  authors?: string[];
   slots?: Slot[];
   roles?: Role[];
 };
