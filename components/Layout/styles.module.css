@@ -9,6 +9,7 @@
   top: 0;
   left: 0;
   right: 0;
+  height: 40px;
   z-index: 2;
   background: #fff;
   box-shadow: 0px 0px 5px black;
@@ -16,21 +17,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
-
-.logo {
-  color: #000;
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0 1em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.ico {
-  margin-right: var(--size-m);
 }
 
 .main {
@@ -62,4 +48,10 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.hi {
+  margin: 0 var(--size-m);
+  color: var(--color-secondary);
+  font-size: var(--font-size-m);
 }

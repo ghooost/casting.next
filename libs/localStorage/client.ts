@@ -1,4 +1,4 @@
-import { isAtServer } from "@shared/utils";
+import { isAtServer } from "@libs/utils";
 
 export const lsSetItem = (key: string, value: string) => {
   if (isAtServer()) {

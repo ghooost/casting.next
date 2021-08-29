@@ -1,10 +1,10 @@
+import { SessionResponse, SignInParams } from '@datatypes/apiAuth';
+import { apiCheck, apiSignIn, apiSignOut, apiSignUp } from '@libs/auth/client';
+import { AuthError } from "@libs/auth/share";
+import { lsGetItem, lsRemoveItem, lsSetItem } from '@libs/localStorage/client';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { authActions } from '@store/slices/auth';
 import { call, put, takeEvery } from 'redux-saga/effects'
-import { AuthError, SignInParams, SessionResponse } from "@shared/auth";
-import { apiCheck, apiSignIn, apiSignOut, apiSignUp } from '@client/auth';
-import { lsGetItem, lsRemoveItem, lsSetItem } from '@client/localStorage';
-import { isAtServer } from '@shared/utils';
 
 function* doSignIn({ payload }: PayloadAction<SignInParams> ) {
   try {

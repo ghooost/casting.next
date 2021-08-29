@@ -1,11 +1,8 @@
-import { getSessionId, getUserBySession, isSessionValid } from 'server/auth';
-import { AuthError, AUTHHEADER, SessionResponse, UserProfile } from "@shared/auth";
+import { SessionResponse } from '@datatypes/apiAuth';
+import { ApiStatus } from '@libs/apiRequest/types';
+import { getSessionId, getUserBySession } from '@libs/auth/server';
 import { NextApiRequest, NextApiResponse } from 'next'
 
-/**
- * In: session
- * Out: session and userProfile or error
- */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const sessionId = getSessionId(req);
   const user = await getUserBySession(sessionId);
@@ -15,11 +12,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       sessionId,
     };
 
-    res.status(200).json(result);
+    res.status(ApiStatus.Ok).json(result);
     return;
   }
   //TODO: better errors
-  res.status(403).json({});
+  res.status(ApiStatus.AuthorizationError).json({});
 }
 
 export default handler

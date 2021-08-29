@@ -1,5 +1,8 @@
+import { SignInParams } from '@datatypes/apiAuth'
+import { UserProfile } from '@datatypes/users'
+import { AuthError } from "@libs/auth/share"
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { AuthError, SignInParams, UserProfile } from "@shared/auth"
+
 import type { RootState } from '../index'
 
 type AuthSlice = {

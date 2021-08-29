@@ -15,11 +15,8 @@ module.exports = {
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias['@components'] = path.resolve(__dirname, '../components/');
     config.resolve.alias['@store'] = path.resolve(__dirname, '../store/');
-    config.resolve.alias['@types'] = path.resolve(__dirname, '../types/');
-    config.resolve.alias['@shared'] = path.resolve(__dirname, '../shared/');
-    config.resolve.alias['@client'] = path.resolve(__dirname, '../client/');
-    config.resolve.alias['@server'] = path.resolve(__dirname, '../server/');
-    config.resolve.alias['@clientapi'] = path.resolve(__dirname, '../clientapi/');
+    config.resolve.alias['@datatypes'] = path.resolve(__dirname, '../datatypes/');
+    config.resolve.alias['@libs'] = path.resolve(__dirname, '../libs/');
 
     return config;
   },

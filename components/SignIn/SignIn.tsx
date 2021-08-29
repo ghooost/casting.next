@@ -1,10 +1,11 @@
-import React, { FC, useCallback, useState } from 'react'
-import { TextInput } from '@components/TextInput'
-import styles from './styles.module.css'
 import { Submit } from '@components/Submit'
-import { i18n, i18nUse } from '@shared/i18n'
+import { TextInput } from '@components/TextInput'
+import { AuthError } from "@libs/auth/share"
+import { i18n, i18nUse } from '@libs/i18n'
+import React, { FC, useCallback, useState } from 'react'
+
 import keyset from './i18n'
-import { AuthError } from "@shared/auth"
+import styles from './styles.module.css'
 
 export type SignInProps = {
   error?: AuthError;

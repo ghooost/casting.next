@@ -1,4 +1,4 @@
-import { Casting, CastingPublic } from '@shared/casting';
+import { Casting, CastingPublic } from 'datatypes/casting';
 import { NextApiRequest, NextApiResponse } from 'next'
 
 const castingsCollectionStub: Casting[] = [

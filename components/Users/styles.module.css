@@ -1,0 +1,47 @@
+.container {
+  display: table;
+  padding: var(--size-l);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-top: 1px solid black;
+}
+
+.email {
+  display: block;
+  width: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: var(--size-l);
+}
+
+.roles {
+  display: block;
+  overflow: hidden;
+  width: 50%;
+  flex-grow: 0;
+  flex-shrink: 0;
+  text-overflow: ellipsis;
+  padding: var(--size-l);
+  cursor: pointer;
+}
+
+.userEdit {
+  display: block;
+  padding: var(--size-l);
+  width: 100%;
+  background: white;
+  box-shadow: 0px 0px 5px black;
+}
+
+.rowHolder {
+  display: flex;
+  flex-direction: row;
+}

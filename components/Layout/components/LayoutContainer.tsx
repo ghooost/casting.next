@@ -1,13 +1,14 @@
-import { isAtServer } from '@shared/utils';
+import { isAtServer } from '@libs/utils';
 import { authActions, authSelectors } from '@store/slices/auth'
 import { useRouter } from 'next/dist/client/router';
-import React, { FC, useEffect } from 'react'
+import React, { FC, useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { Layout, LayoutProps } from '../Layout'
 
 export enum StrictMode {
-  authorized,
-  anonimous,
+  Authorized,
+  Anonimous,
 };
 
 type LayoutContainerProps = Pick<LayoutProps, 'title' | 'description'> & {
@@ -24,7 +25,7 @@ export const LayoutContainer: FC<LayoutContainerProps> = (props) => {
 
   useEffect(() => {
     if (isSessionChecked && !isAtServer()) {
-      const mode = user === null ? StrictMode.anonimous : StrictMode.authorized;
+      const mode = user === null ? StrictMode.Anonimous : StrictMode.Authorized;
 
       if (strictMode !== undefined && strictMode !== mode && fallbackUrl) {
         router.replace(fallbackUrl);
@@ -39,10 +40,15 @@ export const LayoutContainer: FC<LayoutContainerProps> = (props) => {
     }
   }, [dispatch, isSessionChecked]);
 
+  const handleLogout = useCallback(() => {
+    dispatch(authActions.doSignOut());
+  }, [dispatch]);
+
   const newProps = {
     ...props,
     isSessionChecked,
     user,
+    onLogout: handleLogout,
   }
   return <Layout {...newProps}/>
 }

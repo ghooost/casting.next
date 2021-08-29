@@ -1,0 +1,13 @@
+.container {
+  display: block;
+  border: 1px solid var(--color-secondary);
+  padding: var(--size-l);
+  margin: 0 auto;
+  max-width: 400px;
+  text-align: center;
+}
+
+.arrow {
+  display: block;
+  margin: 0 auto;
+}

@@ -1,3 +1,4 @@
+import { Home } from '@components/Home'
 import { LayoutContainer } from '@components/Layout'
 import React from 'react'
 
@@ -7,6 +8,6 @@ export default function Page() {
     title="Castings"
     description="Castings you can"
   >
-    <p>Promo materials here</p>
+    <Home/>
   </LayoutContainer>
 }

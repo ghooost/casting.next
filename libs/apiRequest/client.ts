@@ -1,15 +1,8 @@
+import { AUTHHEADER } from "@libs/auth/share";
 import { store } from "@store/index";
 import { authSelectors } from "@store/slices/auth";
-import { AUTHHEADER } from "@shared/auth";
 
-export type ApiErrorData = {
-  error: string;
-};
-
-enum ApiError {
-  Unknown,
-  NonAuthorized,
-}
+import { ApiStatus } from "./types";
 
 enum RequestMethod {
   GET = 'GET',
@@ -41,13 +34,16 @@ const apiRequest = async (method: RequestMethod, url: string, params?: any) => {
     if ((response.status >= 200 && response.status < 300) || response.status === 400) {
       return Promise.resolve(data);
     };
-    if (response.status === 403) {
-      return Promise.reject(ApiError.NonAuthorized);
+    if (response.status === ApiStatus.AuthorizationError ||
+      response.status === ApiStatus.BadRequestError ||
+      response.status === ApiStatus.ServerError
+      ) {
+      return Promise.reject(response.status);
     }
   } catch {
     //
   }
-  return Promise.reject(ApiError.Unknown);
+  return Promise.reject(ApiStatus.Unknown);
 }
 
 export const apiGet = (url: string, params?: any) => {

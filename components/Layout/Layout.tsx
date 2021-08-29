@@ -1,18 +1,20 @@
-import React, { FC, useEffect } from 'react'
+import { Menu } from '@components/Menu'
+import { UserProfile } from '@datatypes/users';
 import Head from 'next/head'
+import React, { FC } from 'react'
+
 import styles from './styles.module.css'
-import { ProfileMenuContainer } from '@components/ProfileMenu'
-import { UserProfile } from '@shared/auth'
 
 export type LayoutProps = {
   title: string;
   description: string;
   user: UserProfile;
   isSessionChecked: boolean;
+  onLogout: ()=>void;
 };
 
 export const Layout: FC<LayoutProps> = (props) => {
-  const { user, title, description, children, isSessionChecked} = props;
+  const { user, title, description, children, isSessionChecked, onLogout} = props;
 
   return (
     <>
@@ -24,20 +26,13 @@ export const Layout: FC<LayoutProps> = (props) => {
 
       <div className={styles.container}>
         {!isSessionChecked &&
-          <div className={styles.loader}>OoO</div>
+          <div className={styles.loader}>oOoOo</div>
         }
         {isSessionChecked &&
           <>
             <div className={styles.bar}>
-              <a className={styles.logo}>
-                <svg viewBox="0 0 75 75" width="16" height="16" className={styles.ico}>
-                  <rect width="75" height="15"></rect>
-                  <rect y="30" width="75" height="15"></rect>
-                  <rect y="60" width="75" height="15"></rect>
-                </svg>
-                <span>{title}</span>
-              </a>
-              <ProfileMenuContainer user={user} />
+              <Menu title={title} user={user} onLogout={onLogout}/>
+              {user !== null && <div className={styles.hi}>Hi, {user.email}</div>}
             </div>
 
             <main className={styles.main}>{children}</main>

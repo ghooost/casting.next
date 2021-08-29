@@ -23,14 +23,19 @@ export const getDb = async () => {
   }
 }
 
-export const findOne = async (name: MongoCollections, query: any) => {
+export const findOne = async <T>(name: MongoCollections, query: any): Promise<T> => {
   const db = await getDb();
   return await db.collection(name).findOne(query);
 }
 
-export const find = async (name: MongoCollections, query: any) => {
+export const findMany = async (name: MongoCollections, query: any, options?: any) => {
   const db = await getDb();
-  return await db.collection(name).find(query);
+  return await db.collection(name).find(query, options).toArray();
+}
+
+export const findCount = async (name: MongoCollections, query: any) => {
+  const db = await getDb();
+  return await db.collection(name).find(query).count();
 }
 
 export const insert = async (name: MongoCollections, query: any) => {
@@ -38,9 +43,14 @@ export const insert = async (name: MongoCollections, query: any) => {
   return await db.collection(name).insertOne(query);
 }
 
+export const deleteMany = async (name: MongoCollections, query: any) => {
+  const db = await getDb();
+  return await db.collection(name).deleteMany(query);
+}
+
 export const update = async (name: MongoCollections, query: any, set: any) => {
   const db = await getDb();
-  return await db.collection(name).update(query, {$set: set});
+  return await db.collection(name).updateOne(query, {$set: set});
 }
 
 export const closeDb = async () => {

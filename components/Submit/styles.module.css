@@ -1,6 +1,5 @@
 .main {
   margin: var(--size-m) 0;
-  padding: var(--size-m) 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,10 +10,11 @@
   font-size: var(--font-size-m);
   color: var(--color-main);
   background-color: var(--bg-action);
-  padding: var(--size-l) var(--size-xl);
+  padding: var(--size-m) var(--size-xl);
   border: var(--input-border);
   border-radius: var(--input-border-radius);
   cursor: pointer;
+  margin: 0 var(--size-m) 0 0;
 }
 
 .button:active {

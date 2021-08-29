@@ -1,4 +1,4 @@
-import { CastingPublic } from '@shared/casting';
+import { CastingPublic } from 'datatypes/casting';
 import Link from 'next/link';
 import React, { ChangeEvent, FC, useCallback, useState } from 'react'
 

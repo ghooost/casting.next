@@ -1,27 +1,32 @@
-import { SessionResponse, SignInParams } from '@shared/auth';
-import { findOne, MongoCollections, update } from 'server/mongo';
+import { SessionResponse, SignInParams } from '@datatypes/apiAuth';
+import { ApiStatus } from '@libs/apiRequest/types';
+import { getUserByEmailPass } from '@libs/auth/server';
+import { MongoCollections, update } from '@libs/mongo/server';
 import { NextApiRequest, NextApiResponse } from 'next'
 import short from 'short-uuid';
-/**
- * In: session
- * Out: session and userProfile or error
- */
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const data: SignInParams = req.body;
-  const user = await findOne(MongoCollections.users, { 'user.email': data.login, 'user.pass': data.pass });
+  const login = data.email.trim();
+  const pass = data.pass.trim();
+  const user = await getUserByEmailPass(login, pass);
   if (!user) {
     //TODO: better errors
-    res.status(403).json({});
+    res.status(ApiStatus.BadRequestError).json({});
     return;
   };
   const sessionId = short.uuid();
-  await update(MongoCollections.users, { _id: user._id }, { sessions: user.sessions.concat({ id: sessionId, validTill: 0})});
+  await update(
+    MongoCollections.users,
+    { _id: user._id },
+    { sessions: user.sessions.concat({ id: sessionId, validTill: 0})}
+  );
   const result: SessionResponse = {
     user: user.user,
     sessionId,
   };
 
-  res.status(200).json(result);
+  res.status(ApiStatus.Ok).json(result);
 }
 
 export default handler

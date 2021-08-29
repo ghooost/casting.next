@@ -19,21 +19,10 @@
     "jsx": "preserve",
     "baseUrl": "./",
     "paths": {
-      "@components/*": [
-        "./components/*"
-      ],
-      "@store/*": [
-        "./store/*"
-      ],
-      "@shared/*": [
-        "shared/*"
-      ],
-      "@client/*": [
-        "client/*"
-      ],
-      "@server/*": [
-        "server/*"
-      ],
+      "@components/*": ["./components/*"],
+      "@libs/*": ["libs/*"],
+      "@store/*": ["./store/*"],
+      "@datatypes/*": ["datatypes/*"],
     },
   },
   "include": [

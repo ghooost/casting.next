@@ -1,4 +1,5 @@
 import { LayoutContainer, StrictMode } from '@components/Layout'
+import { Pages } from '@datatypes/pages'
 import React from 'react'
 
 export default function Page() {
@@ -6,9 +7,9 @@ export default function Page() {
   return <LayoutContainer
     title="Office"
     description="Castings you can"
-    strictMode={StrictMode.authorized}
-    fallbackUrl="/"
+    strictMode={StrictMode.Authorized}
+    fallbackUrl={Pages.Home}
   >
-    <p>Your office here</p>
+
   </LayoutContainer>
 }

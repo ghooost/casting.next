@@ -1,0 +1,32 @@
+.main {
+  margin: var(--size-m) 0;
+}
+
+.label {
+  display: block;
+  font-size: var(--font-size-s);
+  color: var(--color-secondary);
+  margin-bottom: var(--size-s);
+}
+
+.values {
+  display: flex;
+  flex-direction: row;
+}
+
+.values a {
+  display: block;
+  font-size: var(--font-size-m);
+  padding: var(--size-m);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.selected {
+  background-color: var(--bg-action);
+}
+
+.input:disabled {
+  background-color: var(--bg-disabled);
+  color: var(--color-disabled);
+}

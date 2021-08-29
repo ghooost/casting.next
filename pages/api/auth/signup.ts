@@ -1,37 +1,36 @@
-import { getUserBySession } from '@server/auth';
-import { findOne, insert, MongoCollections, update } from '@server/mongo';
-import { AuthRole, SessionResponse, SignInParams } from '@shared/auth';
+import { SessionResponse, SignInParams } from '@datatypes/apiAuth';
+import { UserRole } from '@datatypes/users';
+import { ApiStatus } from '@libs/apiRequest/types';
+import { getUserByEmail, getUserBySession } from '@libs/auth/server';
+import { findCount, insert, MongoCollections, update } from '@libs/mongo/server';
 import { NextApiRequest, NextApiResponse } from 'next'
 import short from 'short-uuid';
 
-/**
- * In: session
- * Out: session and userProfile or error
- */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const data: SignInParams = req.body;
-  const userWithEmail = await findOne(MongoCollections.users, { 'user.email': data.login });
+  const login = data.email.trim();
+  const pass = data.pass.trim();
+  const userWithEmail = await getUserByEmail(login);
   if (userWithEmail) {
     //TODO: better errors
-    res.status(403).json({});
+    res.status(ApiStatus.AuthorizationError).json({});
     return;
   };
   const sessionId = short.uuid();
+  const numUsers = await findCount(MongoCollections.users, {});
   await insert(MongoCollections.users, {
     user: {
-      email: data.login,
-      pass: data.pass,
-      roles: [AuthRole.client],
+      email: login,
+      pass: pass,
+      role: numUsers === 0 ? UserRole.admin : UserRole.client,
+      // role: UserRole.admin,
     },
     sessions: [{ id: sessionId, validTill: 0 }],
   });
   const user = await getUserBySession(sessionId);
-  const result: SessionResponse = {
-    user: user.user,
-    sessionId,
-  };
+  const result: SessionResponse = { user: user.user, sessionId };
 
-  res.status(200).json(result);
+  res.status(ApiStatus.Ok).json(result);
 }
 
 export default handler
